@@ -135,7 +135,7 @@
       include_once "../../model/connect.php";
       include_once  "../../model/method_stmt.php";
       $obj = new method_stmt();
-      $result2 = $obj->getDetailCourse();
+      $result2 = $obj->getCourse();
       $no = 1;
       echo "<table id='customers'>
       <tr>

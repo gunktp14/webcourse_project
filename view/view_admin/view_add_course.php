@@ -145,7 +145,7 @@
                                 <label for="" class="col-sm-4 col-form-label">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
                             <div class="col-sm-7">
                                 <div class="d-grid gap-2">
-                                    <button type="submit" name="submit" onclick="return confirm('คุณต้องการเพิ่มคอร์สของคุณใช่หรือไม่') " class="btn btn-primary btn-sm">ยืนยันเพื่อเพิ่มคอร์ส +</button>
+                                    <button type="submit" name="submit" class="btn btn-primary btn-sm">ยืนยันเพื่อเพิ่มคอร์ส +</button>
                                 </div>
                                 <p class="x-small-font">*กรุณากรอกข้อมูลจริง</p>
                             </div>

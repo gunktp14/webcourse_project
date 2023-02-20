@@ -77,7 +77,7 @@
             }
         }
 
-        public function getDetailCourse(){
+        public function getCourse(){
             $sql = "SELECT * FROM `sci_cs`";
             $query = $this->ConDB->prepare($sql);
             if($query->execute()){
@@ -117,6 +117,18 @@
             }
         }
 
+        public function getCourseDetails($cs_id){
+            $sql = "SELECT * FROM `sci_cs` WHERE `cs_id` = :cs_id";
+            $query = $this->ConDB->prepare($sql);
+            $query->bindParam(":cs_id",$cs_id); 
+            if($query->execute()){
+                $result = $query->fetch(PDO::FETCH_ASSOC);
+                return $result;
+                return true;
+            }else {
+                return false;
+            }
+        }
 
         
         

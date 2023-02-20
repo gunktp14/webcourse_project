@@ -5,6 +5,13 @@
         header("location: ../../signin.php");
     }
 
+    $cs_id = $_GET['cs_id'];
+
+    include_once '../../model/connect.php';
+    include_once '../../model/method_stmt.php';
+    $obj = new method_stmt();
+    $rs2 = $obj->getCourseDetails($cs_id);
+    
 ?>
 
 
@@ -101,35 +108,17 @@
         </nav>
         <br>
         <div class="container">
-            <b><h6>Course ของเราทั้งหมด <i class="bi bi-book text-sm" ></i></h6></b>
-            <hr>
-            <div class="row my-3">
-                <?php 
-                include_once '../../model/connect.php';
-                include_once '../../model/method_stmt.php';
-                $obj = new method_stmt();
-                $rs2 = $obj->getCourse();
-                if($rs2 == true){
-                    foreach($rs2 as $row){
-                        ?>
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="../view_user/view_details_course.php?cs_id=<?= $row['cs_id']?>"><img class="card-img-top" src='<?= $row['cs_img']?>'alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <p style="font-size:15px;"><?= $row['cs_name']?></p>
-                                    </h4>
-                                    <p style="font-size:10px;color:#656565;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reprehenderit ea iure, rerum debitis ab voluptate delectus doloribus</p>
-                                    <h6><?= $row['cs_wallet']?> บาท</h6>
-                                </div>
-                            </div>
-                        </div>
-                <?php
-                    }
-                }
-                ?>
-
-            </div>
+            <div class="row">
+                <div class="col-3"> </div>
+                <div class="col-6">
+                <h6>รายละเอียดของคอร์ส <i class="bi bi-book text-sm" ></i></h6>
+                <hr>
+                    <img width="100%" src='<?= $rs2['cs_img']?>'>
+                        <br><br>
+                    <h5><?= $rs2['cs_name']?></h5>
+                </div>
+                <div class="col-3"> </div>
+        </div>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
