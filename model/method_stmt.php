@@ -51,7 +51,7 @@
         }
 
         public function login($username,$upassword){
-            $sql = "SELECT `username` FROM `user_tb` WHERE `username` = :username AND `upassword` = :upassword";
+            $sql = "SELECT `username` FROM `user_tb` WHERE `username` = :username AND `upassword` = :upassword"; 
             $query = $this->ConDB->prepare($sql);
             $query->bindParam(":username",$username);
             $query->bindParam(":upassword",$upassword);
@@ -129,6 +129,47 @@
                 return false;
             }
         }
+
+        public function editCourse($cs_id, $cs_name, $cs_img, $cs_date, $cs_wallet, $cs_range_date, $cs_fcourse, $cs_time, $cs_location, $cs_group, $cs_detail, $cs_perform, $cs_reward, $cs_year){
+                $sql = "UPDATE `sci_cs` SET `cs_name` = '". $cs_name ."', `cs_img` = '". $cs_img ."', `cs_date` = '". $cs_date ."', `cs_wallet` = '". $cs_wallet ."'
+                , `cs_range_date` = '". $cs_range_date ."', `cs_fcourse` = '". $cs_fcourse ."', `cs_time` = '". $cs_time ."', `cs_location` = '". $cs_location ."', `cs_group` = '". $cs_group ."'
+                , `cs_detail` = '". $cs_detail ."', `cs_perform` = '". $cs_perform ."', `cs_reward` = '". $cs_reward ."', `cs_year` = '". $cs_year ."' WHERE `cs_id` = '". $cs_id ."'"; 
+                $query = $this->ConDB->prepare($sql);
+                if( $query->execute()){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+
+
+        public function searchYear($cs_year){
+            $sql = "SELECT * FROM `sci_cs` WHERE `cs_year` = :cs_year";
+            $query = $this->ConDB->prepare($sql);
+            $query->bindParam(":cs_year",$cs_year);
+            if($query->execute()){
+                $result = $query->fetchAll(PDO::FETCH_ASSOC); 
+                return $result;
+                return true;
+            }else {
+                return false;
+            }
+
+        }
+
+        public function searchName($search_name){
+            $sql = "SELECT * FROM sci_cs WHERE cs_name LIKE '%$search_name%'";
+            $query = $this->ConDB->prepare($sql);
+            if($query->execute()){
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                return true;
+            }else {
+                return false;
+            }
+
+        }
+        
 
         
         

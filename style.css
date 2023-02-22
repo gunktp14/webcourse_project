@@ -21,10 +21,17 @@ a.forget_pass_button{
   
   #customers th {
     text-align: center;
-    background-color: #04AA6D;
+    background-color: #ff0000;
     color: white;
   }
   .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .test {
     display: block;
     margin-left: auto;
     margin-right: auto;

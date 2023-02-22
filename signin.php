@@ -2,9 +2,9 @@
     session_start();
 
     if(isset($_SESSION['admin_login'])){
-        header("location: ./view/role/admin.php");
+        header("location: ./view/view_admin/admin.php");
     }else if(isset($_SESSION['user_login'])){
-        header("location: ./view/role/user.php");
+        header("location: ./view/view_user/user.php");
     }
 ?>
 
@@ -14,8 +14,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rabbit Farm</title>
-    <link rel = "icon" href = "https://cdn-icons-png.flaticon.com/512/523/523442.png" type = "image/x-icon">
+    <title>Webcourse</title>
+    <link rel = "icon" href = "https://assets.stickpng.com/thumbs/5847f439cef1014c0b5e4890.png" type = "image/x-icon">
     <!--CSS Bootstrap5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--JavaScript Bootstrap5-->
@@ -34,7 +34,8 @@
         @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
         body{
-            background-color:#EAFDFF;     
+            background-image: url("images/background6.jpg");   
+            background-size: 100% 200%; 
             font-family: 'Kanit', sans-serif;        
             }
         #form-login{

@@ -2,6 +2,7 @@
     session_start();
     include_once '../model/connect.php';
     include_once '../model/method_stmt.php';
+    
     $obj = new method_stmt();
 
     $username = $_POST['username'];
@@ -12,10 +13,10 @@
         $row = $check_Admin = $obj->checkAdmin($username);
         if($row['urole'] == "admin"){
             $_SESSION['admin_login'] = "คุณได้ทำการเข้าสู่ระบบ เป็นที่เรียบร้อยเเล้ว Role: Admin";
-            header("location: ../view/role/admin.php");
+            header("location: ../view/view_admin/admin.php");
         }else if($row['urole'] == "user"){
             $_SESSION['user_login'] = "คุณได้ทำการเข้าสู่ระบบ เป็นที่เรียบร้อยเเล้ว";
-            header("location: ../view/role/user.php");
+            header("location: ../view/view_user/user.php");
         }else {
             header("location: ../index.php");
         }
@@ -29,5 +30,6 @@
         $_SESSION['error'] = "username หรือ password ของคุณไม่ถูกต้อง";
         header("location: ../signin.php");  
     }
+    
 
 ?>

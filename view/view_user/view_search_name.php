@@ -5,20 +5,17 @@
         header("location: ../../signin.php");
     }
 
-    $cs_id = $_GET['cs_id'];
+    if(!isset($_POST['search_name'])){
+        header("location: ../../signin.php");
+    }
 
-    include_once '../../model/connect.php';
-    include_once '../../model/method_stmt.php';
-    $obj = new method_stmt();
-    $rs2 = $obj->getCourseDetails($cs_id);
-    
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webcourse</title>
@@ -66,13 +63,6 @@
             height: 10%;   
             text-align:center; 
         }
-        .details-group {
-            background-color:white;
-            border-radius:20px;
-        }
-        .detail-text{
-            color:#4b4b4b;
-        }
         
     </style>
 </head>
@@ -106,7 +96,7 @@
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-            <form action="view_search_name.php" method="POST" class="d-flex">
+            <form action="" method="POST" class="d-flex">
                 <input class="form-control me-2" name="search_name" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button> 
             </form>
@@ -115,61 +105,43 @@
         </nav>
         <br>
         <div class="container">
-            <div class="row">
-                <div class="col-3"> </div>
-                <div class="col-6 details-group">
-                <br>
-                <h6>รายละเอียดของคอร์ส <i class="bi bi-book text-sm" ></i></h6>
-                <hr>
-                    <img width="100%" src='<?= $rs2['cs_img']?>'>
-                        <br><br>
-                        <h5><?= $rs2['cs_name']?></h5>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">รายละเอียด</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Reviews</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-                        </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <br>
-                                <h6><b>ช่วงเวลาเรียน</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_range_date']."";?></p><br>
-                                <h6><b>วัตถุประสงค์</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp ".$rs2['cs_fcourse']."";?></p><br>
-                                <h6><b>ระยะเวลาของหลักสูตร</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_time']."";?></p><br>
-                                <h6><b>สถานที่</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_location']."";?></p><br>
-                                <h6><b>กลุ่มเป้าหมาย</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_group']."";?></p><br>
-                                <h6><b>ขอบข่ายเนื้อหา</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_detail']."";?></p><br>
-                                <h6><b>การวัดผลประเมิน</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_perform']."";?></p><br>
-                                <h6><b>ผลที่คาดว่าจะได้รับ</b></h6>
-                                <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_reward']."";?></p>
-                                <hr>
-                                <div class="d-grid gap-2">
-                                        <button class="btn btn-primary btn-sm" type="button">สมัครคอร์สเรียน <i class="bi bi-pencil-square"></i></button> 
+            <b><h6>Course ของเราทั้งหมด <i class="bi bi-book text-sm" ></i></h6></b>
+            <hr>
+            <div class="row my-3">
+                <?php 
+                include_once '../../model/connect.php';
+                include_once '../../model/method_stmt.php';
+                $obj = new method_stmt();
+                if(empty($_POST['search_name'])){
+                    $rs2 = $obj->getCourse();
+                }else {
+                    $search_name = $_POST['search_name']; 
+                    $rs2 = $obj->searchName($search_name); 
+                }
+                if($rs2 == true){
+                    foreach($rs2 as $row){
+                        ?>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <a href="view_details_course.php?cs_id=<?= $row['cs_id']?>"><img class="card-img-top" src='<?= $row['cs_img']?>'alt=""></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <p style="font-size:15px;"><?= $row['cs_name']?></p>
+                                    </h4>
+                                    <p style="font-size:10px;color:#656565;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reprehenderit ea iure, rerum debitis ab voluptate delectus doloribus</p>
+                                    <h6><?= $row['cs_wallet']?> บาท</h6>
                                 </div>
-                                <p class="x-small-font">คอร์สถูกลงเมื่อปี <?=$rs2['cs_year']?></p>
+                            </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">coming soon!<br></div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">coming soon!<br></div>
-                        </div>
-                </div>
-                <div class="col-3"> </div>
+                <?php
+                    }
+                }
+                ?>
 
+            </div>
+        </div>
 
-        </div>
-        </div>
-        <br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -182,7 +154,7 @@
                 <a class="nav-link active" aria-current="page" href="#"></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="#"></a> 
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

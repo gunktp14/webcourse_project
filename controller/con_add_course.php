@@ -2,6 +2,10 @@
 
     session_start();
 
+    if(!isset($_SESSION['admin_login'])){
+        header("location: ../../signin.php");
+    }
+
     $cs_name = $_POST['cs_name'];
     $cs_img = $_POST['cs_img'];
     $cs_date = $_POST['cs_date'];
