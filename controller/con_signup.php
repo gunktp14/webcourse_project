@@ -46,7 +46,7 @@
             header('location: ../index.php');
         }else{
             $rs2 = $obj->check_Email($email);
-            if($rs2){
+            if($rs2 === true){
                 $_SESSION['warning']="This email already has been used!";
                 header("location: ../index.php");
             }else{

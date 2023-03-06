@@ -1,6 +1,6 @@
 <?php
     class ConDB{
-        private $dsn = "mysql:host=localhost;dbname=myDB";
+        private $dsn = "mysql:host=localhost;dbname=sci_db";
         private $username = "root";
         private $password = "";
 

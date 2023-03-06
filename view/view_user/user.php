@@ -119,7 +119,7 @@
                                     <h4 class="card-title">
                                         <p style="font-size:15px;"><?= $row['cs_name']?></p>
                                     </h4>
-                                    <p style="font-size:10px;color:#656565;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reprehenderit ea iure, rerum debitis ab voluptate delectus doloribus</p>
+                                    <p style="font-size:10px;color:#656565;"><?= $row['cs_detail']?></p>
                                     <h6><?= $row['cs_wallet']?> บาท</h6>
                                 </div>
                             </div>

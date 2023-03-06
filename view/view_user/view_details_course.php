@@ -155,9 +155,9 @@
                                 <h6><b>ผลที่คาดว่าจะได้รับ</b></h6>
                                 <p class="detail-text"><?php echo"&nbsp&nbsp&nbsp&nbsp".$rs2['cs_reward']."";?></p>
                                 <hr>
-                                <div class="d-grid gap-2">
-                                        <button class="btn btn-primary btn-sm" type="button">สมัครคอร์สเรียน <i class="bi bi-pencil-square"></i></button> 
-                                </div>
+                                        <div class="d-grid gap-2">
+                                                <a href="view_reg_course.php?cs_id=<?= $rs2['cs_id']?>" class="btn btn-primary btn-sm">สมัครคอร์สเรียน <i class="bi bi-pencil-square"></i></a>
+                                        </div>
                                 <p class="x-small-font">คอร์สถูกลงเมื่อปี <?=$rs2['cs_year']?></p>
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">coming soon!<br></div>

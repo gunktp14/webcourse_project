@@ -54,7 +54,7 @@
             font-size:smaller;
         }
         .x-small-font{
-            font-size:x-small;
+            font-size:x-small; 
         }
         .alert {
             height: 10%;   
